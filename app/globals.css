@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --accent: #e5ff00; /* single accent color — chartreuse */
+  --accent: #111111; /* single accent color — near-black */
 }
 
 * {
