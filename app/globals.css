@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-:root {
-  --accent: #111111; /* single accent color — near-black */
+@theme {
+  --color-accent: #111111;
 }
 
-* {
-  box-sizing: border-box;
+:root {
+  --accent: #111111; /* single accent color — near-black */
 }
