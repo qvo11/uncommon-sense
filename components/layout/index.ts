@@ -1,2 +1,3 @@
 // Layout shells: Header, Footer, Nav, MobileMenu
-export {};
+export { default as NavBar } from './NavBar';
+

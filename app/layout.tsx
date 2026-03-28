@@ -8,7 +8,7 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
 export const metadata: Metadata = {
   title: "Uncommon Sense",
-  description: "Minimal streetwear.",
+  description: "Premium hoodies and tees crafted for dreamers. Wear your ambition.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
