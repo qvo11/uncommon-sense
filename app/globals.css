@@ -4,6 +4,7 @@
   --color-accent: #111111;
   --color-background: #FAF8F5;
   --color-foreground: oklch(0.20 0.02 60);
+  --color-secondary: oklch(0.97 0 0);
 }
 
 :root {

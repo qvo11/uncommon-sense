@@ -24,7 +24,7 @@ const HeroSection = () => {
         <p className="text-sm tracking-[0.3em] uppercase mb-6">
           Born for the Ones Who Never Fit the Mold
         </p>
-        <h2 className="text-5xl md:text-7xl lg:text-8xl italic leading-tight mb-8 text-balance">
+        <h2 className="text-4xl md:text-5xl lg:text-7xl italic leading-tight mb-8 text-balance">
           Wear the Uncommon
         </h2>
         <p className="text-md md:text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed" style={{ fontFamily: "var(--font-geist), 'Geist Fallback'" }}>
