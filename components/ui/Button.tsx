@@ -20,7 +20,7 @@ export default function Button({
   isLoading,
 }: ButtonProps) {
   const base =
-    "inline-block px-8 py-3 text-sm tracking-widest uppercase font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-full";
+    "group inline-block px-8 py-3 text-sm tracking-widest uppercase font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-full";
   const variants: Record<ButtonVariant, string> = {
     solid: "bg-neutral-950 text-white hover:bg-neutral-900",
     outline:

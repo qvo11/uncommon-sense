@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     const base =
-      "w-full bg-neutral-100 border border-neutral-200 text-sm tracking-wide placeholder:tracking-wide placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-950 transition-all duration-200 rounded-none px-4 py-3 disabled:opacity-50 disabled:cursor-not-allowed";
+      "w-full bg-neutral-100 border border-neutral-200 text-sm tracking-wide placeholder:tracking-wide placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-950 transition-all duration-200 px-4 py-3 disabled:opacity-50 disabled:cursor-not-allowed";
 
     return (
       <input

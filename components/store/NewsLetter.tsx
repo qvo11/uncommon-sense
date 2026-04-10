@@ -44,7 +44,7 @@ const NewsLetter = () => {
           Stay Connected
         </p>
         <h2 className="text-4xl md:text-5xl italic mb-6">
-          Join the Dreamers
+          Join Uncommon Sense
         </h2>
         <p className="text-muted-foreground mb-10 leading-relaxed">
           Receive 10% off your first order, exclusive updates, and inspiration delivered to your inbox.
@@ -52,9 +52,9 @@ const NewsLetter = () => {
 
         {isSubmitted ? (
           <div className="bg-secondary p-8 rounded-lg">
-            <p className="text-lg italic mb-2">Welcome to the dream.</p>
+            <p className="text-lg italic mb-2">Welcome to Uncommon Sense.</p>
             <p className="text-sm text-muted-foreground">
-              Check your inbox for your welcome gift.
+              Check your inbox for your welcome gift!
             </p>
           </div>
         ) : (
