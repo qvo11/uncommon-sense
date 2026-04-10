@@ -7,6 +7,8 @@ type ButtonProps = {
   href?: string;
   variant?: ButtonVariant;
   className?: string;
+  disabled?: boolean;
+  isLoading?: boolean;
 };
 
 export default function Button({
@@ -14,9 +16,11 @@ export default function Button({
   href,
   variant = "solid",
   className = "",
+  disabled,
+  isLoading,
 }: ButtonProps) {
   const base =
-    "inline-block px-8 py-3 text-sm tracking-widest uppercase font-medium transition-colors duration-200";
+    "inline-block px-8 py-3 text-sm tracking-widest uppercase font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-full";
   const variants: Record<ButtonVariant, string> = {
     solid: "bg-neutral-950 text-white hover:bg-neutral-900",
     outline:
@@ -33,5 +37,9 @@ export default function Button({
     );
   }
 
-  return <button className={classes}>{children}</button>;
+  return (
+    <button className={classes} disabled={disabled || isLoading}>
+      {children}
+    </button>
+  );
 }
