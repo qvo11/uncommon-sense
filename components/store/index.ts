@@ -7,3 +7,4 @@ export { default as ProductCategories } from "./ProductCategories";
 export { default as QuoteSection } from "./QuoteSection";
 export { default as AboutSection } from "./AboutSection";
 export { default as NewsLetter } from "./NewsLetter";
+export { default as Marquee } from "./Marquee";

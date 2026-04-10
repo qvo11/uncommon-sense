@@ -28,7 +28,7 @@ const HeroSection = () => {
           Wear the Uncommon
         </h2>
         <p className="text-md md:text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed font-medium">
-          Crafted for those with the sense to do things differently. Premium essentials designed for comfort, built for ambition. This is more than clothing — it's armor for the uncommon.
+          Crafted for those with the sense to do things differently. Premium essentials designed for comfort, built for the grind. 
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button href="/shop">Shop Collection</Button>
@@ -36,9 +36,9 @@ const HeroSection = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="mt-30 flex flex-col items-center gap-2">
-          <span className="text-xs tracking-widest uppercase">Scroll</span>
-          <div className="w-px h-12 bg-black/30" />
+        <div className="mt-30 flex flex-col items-center gap-2 fontweight-medium">
+          <span className="text-sm tracking-widest uppercase">Scroll</span>
+          <div className="w-px h-12 bg-black" />
         </div>
       </div>
     </section>
