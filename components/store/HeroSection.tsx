@@ -17,7 +17,7 @@ const HeroSection = () => {
       </div>
 
       {/* Fade overlay */}
-      <div className="absolute inset-0 z-10 bg-white/20" />
+      <div className="absolute inset-0 z-10 bg-white/30" />
 
       {/* Content */}
     <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
@@ -27,7 +27,7 @@ const HeroSection = () => {
         <h2 className="text-4xl md:text-5xl lg:text-7xl italic leading-tight mb-8">
           Wear the Uncommon
         </h2>
-        <p className="text-md md:text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed">
+        <p className="text-md md:text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed font-medium">
           Crafted for those with the sense to do things differently. Premium essentials designed for comfort, built for ambition. This is more than clothing — it's armor for the uncommon.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
