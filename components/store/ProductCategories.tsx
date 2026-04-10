@@ -29,7 +29,7 @@ const ProductCategories = () => {
             <Link
               key={category.name}
               href={category.href}
-              className="group relative overflow-hidden aspect-[4/5] md:aspect-[3/4]"
+              className="group relative overflow-hidden aspect-4/5 md:aspect-3/4"
             >
               <Image
                 src={category.image}
@@ -37,17 +37,17 @@ const ProductCategories = () => {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-foreground/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-foreground/60 via-foreground/20 to-transparent" />
               
               <div className="absolute inset-0 p-8 flex flex-col justify-end text-background">
-                <p className="text-xs tracking-widest uppercase mb-2 font-[var(--font-sans-body)]">
+                <p className="text-xs tracking-widest uppercase mb-2">
                   {category.count}
                 </p>
-                <h3 className="text-4xl md:text-5xl italic mb-3">{category.name}</h3>
-                <p className="text-sm mb-4 opacity-80 font-[var(--font-sans-body)]">
+                <h3 className="text-4xl md:text-5xl uppercase mb-3">{category.name}</h3>
+                <p className="text-sm mb-4 opacity-80">
                   {category.description}
                 </p>
-                <div className="flex items-center gap-2 text-sm tracking-widest uppercase font-[var(--font-sans-body)] group-hover:gap-4 transition-all">
+                <div className="flex items-center gap-2 text-sm tracking-widest uppercase group-hover:gap-4 transition-all">
                   <span>Shop Now</span>
                   <ArrowRight className="size-4" />
                 </div>

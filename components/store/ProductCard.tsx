@@ -28,7 +28,7 @@ export default function ProductCard({
   return (
     <Link href={href} className="group block">
       {/* Image */}
-      <div className="relative overflow-hidden aspect-[3/4]">
+      <div className="relative overflow-hidden aspect-3/4">
         <Image
           src={image}
           alt={name}
