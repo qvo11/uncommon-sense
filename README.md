@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Uncommon Sense — Storefront
+
+Custom Next.js storefront for Uncommon Sense. Built with Next.js 16, Tailwind CSS v4, Clerk authentication, Stripe payments, Prisma ORM, and Cloudinary image hosting.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| Styling | Tailwind CSS v4 |
+| Auth | Clerk |
+| Payments | Stripe |
+| Database | PostgreSQL via Prisma |
+| Images | Cloudinary |
+| Language | TypeScript |
+
+---
+
+## Project Structure
+
+```
+app/
+  (store)/          # Customer-facing pages
+    page.tsx          # Home
+    shop/             # Shop, Hoodies, Tees, product detail pages
+    cart/
+    checkout/
+    account/
+    orders/
+  (admin)/          # Admin dashboard
+    admin/
+      products/       # Create, edit, list products
+      orders/         # View and manage orders
+  api/
+    webhooks/stripe/  # Stripe webhook handler
+    subscribe/        # Mailchimp newsletter signup
+components/
+  store/            # Homepage sections, product grid, filters
+  layout/           # NavBar, Footer
+  ui/               # Shared UI primitives
+lib/
+  db.ts             # Prisma client
+  stripe.ts         # Stripe client
+  cloudinary.ts     # Cloudinary client
+data/
+  products.ts       # Static product seed data
+prisma/
+  schema.prisma     # Database schema (Product, Order, OrderItem)
+public/
+  images/           # Static images
+  fonts/            # Custom fonts (Aston Script)
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Set up environment variables
+
+Copy `.env.example` to `.env.local` and fill in all values:
+
+```bash
+cp .env.example .env.local
+```
+
+Required services:
+- **PostgreSQL** — local or hosted (e.g. Supabase, Railway)
+- **Clerk** — [clerk.com](https://clerk.com) — authentication
+- **Stripe** — [stripe.com](https://stripe.com) — payments + webhooks
+- **Cloudinary** — [cloudinary.com](https://cloudinary.com) — product image hosting
+- **Mailchimp** — newsletter signup (optional)
+
+### 3. Set up the database
+
+```bash
+npx prisma generate
+npx prisma db push
+```
+
+### 4. Run the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
 
-## Learn More
+| Variable | Description |
+|---|---|
+| `DATABASE_URL` | PostgreSQL connection string |
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk public key |
+| `CLERK_SECRET_KEY` | Clerk secret key |
+| `STRIPE_SECRET_KEY` | Stripe server-side key |
+| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe client-side key |
+| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
+| `CLOUDINARY_API_KEY` | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | Cloudinary API secret |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stripe Webhooks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For local development, forward webhooks using the Stripe CLI:
 
-## Deploy on Vercel
+```bash
+stripe listen --forward-to localhost:3000/api/webhooks/stripe
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Copy the webhook signing secret it outputs into `STRIPE_WEBHOOK_SECRET` in `.env.local`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Build & Deploy
+
+```bash
+npm run build
+npm run start
+```
+
+The app can be deployed to any Node.js host (Vercel, Railway, etc.). Ensure all environment variables are set in the hosting platform.
