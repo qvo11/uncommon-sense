@@ -21,10 +21,10 @@ const HeroSection = () => {
 
       {/* Content */}
     <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-        <p className="text-md tracking-[0.3em] uppercase mb-6">
+        <p className="text-md tracking-[0.3em] uppercase mb-10">
           Born for the Ones Who Never Fit the Mold
         </p>
-        <h2 className="text-4xl md:text-5xl lg:text-7xl italic leading-tight mb-8">
+        <h2 className="text-4xl md:text-5xl lg:text-7xl leading-tight mb-8 font-aston-script">
           Wear the Uncommon
         </h2>
         <p className="text-md md:text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed font-medium">

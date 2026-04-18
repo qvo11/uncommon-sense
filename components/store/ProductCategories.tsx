@@ -24,6 +24,14 @@ const ProductCategories = () => {
   return (
     <section className="py-24 md:py-32 px-6 bg-secondary/50">
       <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="text-sm tracking-[0.3em] uppercase mb-4">
+            The Products
+          </p>
+          <h2 className="text-4xl md:text-5xl font-aston-script italic">
+            Shop by Category
+          </h2>
+        </div>
         <div className="grid md:grid-cols-2 gap-8">
           {categories.map((category) => (
             <Link
@@ -43,7 +51,7 @@ const ProductCategories = () => {
                 <p className="text-xs tracking-widest uppercase mb-2">
                   {category.count}
                 </p>
-                <h3 className="text-4xl md:text-5xl uppercase mb-3">{category.name}</h3>
+                <h3 className="text-4xl md:text-5xl font-aston-script mb-3 mt-5">{category.name}</h3>
                 <p className="text-sm mb-4 opacity-80">
                   {category.description}
                 </p>

@@ -4,6 +4,8 @@
 @theme {
   --font-display: 'Instrument Serif', serif;
   --font-sans: 'Inter', sans-serif;
+  --font-helvetica: 'Helvetica Neue', sans-serif;
+  --font-aston-script: 'Aston Script', cursive;
   --color-accent: #111111;
   --color-background: #FAF8F5;
   --color-foreground: oklch(0.20 0.02 60);
@@ -15,6 +17,13 @@
   @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-33.333%); }
+  }
+
+  @font-face {
+    font-family: "Aston Script";
+    src: url("/fonts/Aston Script.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
   }
 
 :root {

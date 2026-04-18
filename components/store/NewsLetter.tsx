@@ -43,7 +43,7 @@ const NewsLetter = () => {
         <p className="text-xs tracking-[0.3em] uppercase mb-4">
           Stay Connected
         </p>
-        <h2 className="text-4xl md:text-5xl italic mb-6">
+        <h2 className="text-4xl md:text-5xl font-aston-script mb-6">
           Join Uncommon Sense
         </h2>
         <p className="text-muted-foreground mb-10 leading-relaxed">

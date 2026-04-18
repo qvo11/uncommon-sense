@@ -9,8 +9,8 @@ export default function ProductsSection() {
           <p className="text-sm tracking-[0.3em] uppercase mb-4">
             The Collection
           </p>
-          <h2 className="text-4xl md:text-5xl italic">
-            Essentials for Dreamers
+          <h2 className="text-4xl md:text-5xl font-aston-script italic">
+            Day Dreamers Essentials
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">

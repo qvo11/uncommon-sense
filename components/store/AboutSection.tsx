@@ -21,7 +21,7 @@ const AboutSection = () => {
             <p className="text-xs tracking-[0.3em] uppercase mb-4">
               Our Story
             </p>
-            <h2 className="text-4xl md:text-5xl italic mb-8 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-aston-script mb-8 mt-5">
               Built for The Ambitious
             </h2>
             <div className="space-y-6 text-muted-foreground leading-relaxed">
@@ -40,7 +40,7 @@ const AboutSection = () => {
             <div className="grid grid-cols-3 gap-8 mt-12 pt-12 border-t border-border">
               <div>
                 <p className="text-3xl md:text-4xl italic mb-1">100%</p>
-                <p className="text-xs tracking-widest uppercase">Organic Cotton</p>
+                <p className="text-xs tracking-widest uppercase leading-tight">Heavy Weight Cotton</p>
               </div>
               <div>
                 <p className="text-3xl md:text-4xl italic mb-1">2025</p>
