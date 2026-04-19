@@ -1,7 +1,11 @@
-import { products } from "@/data/products";
 import ProductCard from "./ProductCard";
+import { getProducts } from "@/lib/shopify";
+import type { ShopifyProductItem } from "@/lib/shopify";
+import { Category } from "@/types";
 
-export default function ProductsSection() {
+export default async function ProductsSection() {
+  const shopifyProducts = await getProducts();
+
   return (
     <section id="shop" className="py-24 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
@@ -14,9 +18,15 @@ export default function ProductsSection() {
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-          {products.map((product) => (
-            <ProductCard key={product.slug} {...product} />
-          ))}
+          {shopifyProducts.map((product: ShopifyProductItem) => (
+          <ProductCard 
+          key={product.slug}
+          slug={product.slug}
+          category={product.category as Category}
+          name={product.name}
+          price={product.price}
+          image={product.image} />
+      ))}
         </div>
       </div>
     </section>

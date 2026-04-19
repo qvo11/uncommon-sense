@@ -1,6 +1,6 @@
 # Uncommon Sense — Storefront
 
-Custom Next.js storefront for Uncommon Sense. Built with Next.js 16, Tailwind CSS v4, Clerk authentication, Stripe payments, Prisma ORM, and Cloudinary image hosting.
+Custom Next.js headless storefront for Uncommon Sense, powered by the Shopify Storefront API. Built with Next.js 16, Tailwind CSS v4, Clerk authentication, Stripe payments, Prisma ORM, and Cloudinary image hosting.
 
 ---
 
@@ -9,11 +9,12 @@ Custom Next.js storefront for Uncommon Sense. Built with Next.js 16, Tailwind CS
 | Layer | Technology |
 |---|---|
 | Framework | Next.js 16 (App Router) |
+| Storefront Data | Shopify Storefront API (`@shopify/storefront-api-client`) |
 | Styling | Tailwind CSS v4 |
 | Auth | Clerk |
 | Payments | Stripe |
 | Database | PostgreSQL via Prisma |
-| Images | Cloudinary |
+| Images | Shopify CDN (`cdn.shopify.com`) + Cloudinary |
 | Language | TypeScript |
 
 ---
@@ -41,11 +42,12 @@ components/
   layout/           # NavBar, Footer
   ui/               # Shared UI primitives
 lib/
+  shopify.ts        # Shopify Storefront API client + product queries
   db.ts             # Prisma client
   stripe.ts         # Stripe client
   cloudinary.ts     # Cloudinary client
 data/
-  products.ts       # Static product seed data
+  products.ts       # Static fallback product data
 prisma/
   schema.prisma     # Database schema (Product, Order, OrderItem)
 public/
@@ -72,10 +74,11 @@ cp .env.example .env.local
 ```
 
 Required services:
+- **Shopify** — Storefront API access token from your Shopify admin
 - **PostgreSQL** — local or hosted (e.g. Supabase, Railway)
 - **Clerk** — [clerk.com](https://clerk.com) — authentication
 - **Stripe** — [stripe.com](https://stripe.com) — payments + webhooks
-- **Cloudinary** — [cloudinary.com](https://cloudinary.com) — product image hosting
+- **Cloudinary** — [cloudinary.com](https://cloudinary.com) — image hosting
 - **Mailchimp** — newsletter signup (optional)
 
 ### 3. Set up the database
@@ -99,6 +102,9 @@ Open [http://localhost:3000](http://localhost:3000).
 
 | Variable | Description |
 |---|---|
+| `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` | Your Shopify store domain (e.g. `your-store.myshopify.com`) |
+| `NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN` | Shopify Storefront API public access token (client-side) |
+| `SHOPIFY_STOREFRONT_PRIVATE_TOKEN` | Shopify Storefront API private access token (server-side only) |
 | `DATABASE_URL` | PostgreSQL connection string |
 | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk public key |
 | `CLERK_SECRET_KEY` | Clerk secret key |
@@ -108,6 +114,18 @@ Open [http://localhost:3000](http://localhost:3000).
 | `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
 | `CLOUDINARY_API_KEY` | Cloudinary API key |
 | `CLOUDINARY_API_SECRET` | Cloudinary API secret |
+
+---
+
+## Shopify Setup
+
+1. In your Shopify admin, go to **Apps > Develop apps** and create a new app.
+2. Under **API credentials**, enable the Storefront API and grant the required scopes (`products`, `collections`, etc.).
+3. Copy the **public** and **private** access tokens into your `.env.local`.
+
+The Storefront API client is in `lib/shopify.ts`:
+- `shopifyServer` — uses the private token, safe for Server Components and Route Handlers only
+- `shopifyClient` — uses the public token, safe for Client Components (cart, live updates)
 
 ---
 
@@ -130,4 +148,4 @@ npm run build
 npm run start
 ```
 
-The app can be deployed to any Node.js host (Vercel, Railway, etc.). Ensure all environment variables are set in the hosting platform.
+Deploy to any Node.js host (Vercel, Railway, etc.). Ensure all environment variables are configured in the hosting platform.
