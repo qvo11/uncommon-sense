@@ -1,6 +1,6 @@
 # Uncommon Sense — Storefront
 
-Custom Next.js headless storefront for Uncommon Sense, powered by the Shopify Storefront API. Built with Next.js 16, Tailwind CSS v4, Clerk authentication, Prisma ORM, and Cloudinary image hosting. Payments are handled natively through Shopify.
+Custom Next.js headless storefront for Uncommon Sense, powered by the Shopify Storefront API. Built with Next.js 16, Tailwind CSS v4, Clerk authentication, and Cloudinary image hosting. Payments are handled natively through Shopify.
 
 ---
 
@@ -13,7 +13,6 @@ Custom Next.js headless storefront for Uncommon Sense, powered by the Shopify St
 | Payments | Shopify Checkout |
 | Styling | Tailwind CSS v4 |
 | Auth | Clerk |
-| Database | PostgreSQL via Prisma |
 | Images | Shopify CDN (`cdn.shopify.com`) + Cloudinary |
 | Language | TypeScript |
 
@@ -41,13 +40,11 @@ components/
   layout/           # NavBar, Footer
   ui/               # Shared UI primitives
 lib/
-  shopify.ts        # Shopify Storefront API client + product queries
-  db.ts             # Prisma client
-  cloudinary.ts     # Cloudinary client
+  shopify-server.ts  # Shopify Storefront API client (server-side, private token)
+  shopify-client.ts  # Shopify Storefront API client (client-side, public token)
+  cloudinary.ts      # Cloudinary client
 data/
   products.ts       # Static fallback product data
-prisma/
-  schema.prisma     # Database schema (Product, Order, OrderItem)
 public/
   images/           # Static images
   fonts/            # Custom fonts (Aston Script)
@@ -73,19 +70,11 @@ cp .env.example .env.local
 
 Required services:
 - **Shopify** — Storefront API access token from your Shopify admin
-- **PostgreSQL** — local or hosted (e.g. Supabase, Railway)
 - **Clerk** — [clerk.com](https://clerk.com) — authentication
 - **Cloudinary** — [cloudinary.com](https://cloudinary.com) — image hosting
 - **Mailchimp** — newsletter signup (optional)
 
-### 3. Set up the database
-
-```bash
-npx prisma generate
-npx prisma db push
-```
-
-### 4. Run the dev server
+### 3. Run the dev server
 
 ```bash
 npm run dev
@@ -102,12 +91,14 @@ Open [http://localhost:3000](http://localhost:3000).
 | `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` | Your Shopify store domain (e.g. `your-store.myshopify.com`) |
 | `NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN` | Shopify Storefront API public access token (client-side) |
 | `SHOPIFY_STOREFRONT_PRIVATE_TOKEN` | Shopify Storefront API private access token (server-side only) |
-| `DATABASE_URL` | PostgreSQL connection string |
 | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk public key |
 | `CLERK_SECRET_KEY` | Clerk secret key |
 | `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
 | `CLOUDINARY_API_KEY` | Cloudinary API key |
 | `CLOUDINARY_API_SECRET` | Cloudinary API secret |
+| `MAILCHIMP_API_KEY` | Mailchimp API key |
+| `MAILCHIMP_SERVER_PREFIX` | Mailchimp server prefix (e.g. `us1`) |
+| `MAILCHIMP_AUDIENCE_ID` | Mailchimp audience/list ID |
 
 ---
 
@@ -117,9 +108,9 @@ Open [http://localhost:3000](http://localhost:3000).
 2. Under **API credentials**, enable the Storefront API and grant the required scopes (`products`, `collections`, etc.).
 3. Copy the **public** and **private** access tokens into your `.env.local`.
 
-The Storefront API client is in `lib/shopify.ts`:
-- `shopifyServer` — uses the private token, safe for Server Components and Route Handlers only
-- `shopifyClient` — uses the public token, safe for Client Components (cart, live updates)
+The Storefront API client is split across two files:
+- `lib/shopify-server.ts` — uses the private token, safe for Server Components and Route Handlers only
+- `lib/shopify-client.ts` — uses the public token, safe for Client Components (cart, live updates)
 
 ---
 
