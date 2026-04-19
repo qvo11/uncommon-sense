@@ -1,8 +1,8 @@
-import { products } from "@/data/products";
+import { getProducts } from "@/lib/shopify-server";
 import FilterableProductGrid from "@/components/store/FilterableProductGrid";
 
-export default function HoodiesPage() {
-  const hoodies = products.filter((p) => p.category === "hoodies");
+export default async function HoodiesPage() {
+  const hoodies = (await getProducts()).filter((p) => p.category === "hoodies");
   return (
     <div className="py-24 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
