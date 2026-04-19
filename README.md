@@ -1,6 +1,6 @@
 # Uncommon Sense — Storefront
 
-Custom Next.js headless storefront for Uncommon Sense, powered by the Shopify Storefront API. Built with Next.js 16, Tailwind CSS v4, Clerk authentication, Stripe payments, Prisma ORM, and Cloudinary image hosting.
+Custom Next.js headless storefront for Uncommon Sense, powered by the Shopify Storefront API. Built with Next.js 16, Tailwind CSS v4, Clerk authentication, Prisma ORM, and Cloudinary image hosting. Payments are handled natively through Shopify.
 
 ---
 
@@ -10,9 +10,9 @@ Custom Next.js headless storefront for Uncommon Sense, powered by the Shopify St
 |---|---|
 | Framework | Next.js 16 (App Router) |
 | Storefront Data | Shopify Storefront API (`@shopify/storefront-api-client`) |
+| Payments | Shopify Checkout |
 | Styling | Tailwind CSS v4 |
 | Auth | Clerk |
-| Payments | Stripe |
 | Database | PostgreSQL via Prisma |
 | Images | Shopify CDN (`cdn.shopify.com`) + Cloudinary |
 | Language | TypeScript |
@@ -35,7 +35,6 @@ app/
       products/       # Create, edit, list products
       orders/         # View and manage orders
   api/
-    webhooks/stripe/  # Stripe webhook handler
     subscribe/        # Mailchimp newsletter signup
 components/
   store/            # Homepage sections, product grid, filters
@@ -44,7 +43,6 @@ components/
 lib/
   shopify.ts        # Shopify Storefront API client + product queries
   db.ts             # Prisma client
-  stripe.ts         # Stripe client
   cloudinary.ts     # Cloudinary client
 data/
   products.ts       # Static fallback product data
@@ -77,7 +75,6 @@ Required services:
 - **Shopify** — Storefront API access token from your Shopify admin
 - **PostgreSQL** — local or hosted (e.g. Supabase, Railway)
 - **Clerk** — [clerk.com](https://clerk.com) — authentication
-- **Stripe** — [stripe.com](https://stripe.com) — payments + webhooks
 - **Cloudinary** — [cloudinary.com](https://cloudinary.com) — image hosting
 - **Mailchimp** — newsletter signup (optional)
 
@@ -108,9 +105,6 @@ Open [http://localhost:3000](http://localhost:3000).
 | `DATABASE_URL` | PostgreSQL connection string |
 | `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk public key |
 | `CLERK_SECRET_KEY` | Clerk secret key |
-| `STRIPE_SECRET_KEY` | Stripe server-side key |
-| `STRIPE_WEBHOOK_SECRET` | Stripe webhook signing secret |
-| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe client-side key |
 | `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name |
 | `CLOUDINARY_API_KEY` | Cloudinary API key |
 | `CLOUDINARY_API_SECRET` | Cloudinary API secret |
@@ -126,18 +120,6 @@ Open [http://localhost:3000](http://localhost:3000).
 The Storefront API client is in `lib/shopify.ts`:
 - `shopifyServer` — uses the private token, safe for Server Components and Route Handlers only
 - `shopifyClient` — uses the public token, safe for Client Components (cart, live updates)
-
----
-
-## Stripe Webhooks
-
-For local development, forward webhooks using the Stripe CLI:
-
-```bash
-stripe listen --forward-to localhost:3000/api/webhooks/stripe
-```
-
-Copy the webhook signing secret it outputs into `STRIPE_WEBHOOK_SECRET` in `.env.local`.
 
 ---
 

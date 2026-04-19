@@ -25,8 +25,7 @@ model Order {
   userId          String
   total           Int
   status          String      @default("pending")
-  stripeSessionId String      @unique
-  items           OrderItem[]
+items           OrderItem[]
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 }
