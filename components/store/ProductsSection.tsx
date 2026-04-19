@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
-import { getProducts } from "@/lib/shopify";
-import type { ShopifyProductItem } from "@/lib/shopify";
+import { getProducts } from "@/lib/shopify-server";
+import type { ShopifyProductItem } from "@/lib/shopify-server";
 import { Category } from "@/types";
 
 export default async function ProductsSection() {
@@ -17,7 +17,7 @@ export default async function ProductsSection() {
             Day Dreamers Essentials
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
           {shopifyProducts.map((product: ShopifyProductItem) => (
           <ProductCard 
           key={product.slug}
