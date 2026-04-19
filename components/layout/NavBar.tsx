@@ -22,7 +22,6 @@ export default function NavBar() {
 
         {/* Right Nav */}
         <nav className="flex items-center justify-end gap-6 text-md text-neutral">
-          <Link href="/about">About</Link>
           <Link href="/cart" aria-label="Cart" className="relative">
               <ShoppingBag className="size-5" />
           </Link>

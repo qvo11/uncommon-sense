@@ -8,14 +8,14 @@ const categories = [
     name: "Hoodies",
     description: "Premium comfort for endless pursuits",
     image: "/images/hoodie-cloud.jpg",
-    href: "#hoodies",
+    href: "/shop/hoodies",
     count: "3 Products"
   },
   {
     name: "Tees",
     description: "Essential layers for daily dreamers",
     image: "/images/tee-dawn.jpg",
-    href: "#tees",
+    href: "/shop/tees",
     count: "3 Products"
   }
 ]

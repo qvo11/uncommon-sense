@@ -32,7 +32,6 @@ const HeroSection = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button href="/shop">Shop Collection</Button>
-          <Button href="/about" variant="outline">Our Story</Button>
         </div>
 
         {/* Scroll Indicator */}

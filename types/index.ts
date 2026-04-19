@@ -27,6 +27,5 @@ export type Order = {
   items: CartItem[];
   total: number;
   status: "pending" | "paid" | "shipped" | "delivered";
-  stripeSessionId: string;
   createdAt: Date;
 };
