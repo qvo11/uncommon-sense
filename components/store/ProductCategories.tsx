@@ -7,16 +7,20 @@ const categories = [
   {
     name: "Hoodies",
     description: "Premium comfort for endless pursuits",
-    image: "/images/hoodie-cloud.jpg",
+    image: "/images/daydreamerhoodie.png",
     href: "/shop/hoodies",
-    count: "3 Products"
   },
   {
     name: "Tees",
     description: "Essential layers for daily dreamers",
-    image: "/images/tee-dawn.jpg",
+    image: "/images/daretodreamtee.png",
     href: "/shop/tees",
-    count: "3 Products"
+  },
+  {
+    name: "Tanks",
+    description: "Sleevless style for breathable wear",
+    image: "/images/activetank.png",
+    href: "/shop/tanks"
   }
 ]
 
@@ -32,7 +36,7 @@ const ProductCategories = () => {
             Shop by Category
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {categories.map((category) => (
             <Link
               key={category.name}
@@ -48,9 +52,6 @@ const ProductCategories = () => {
               <div className="absolute inset-0 bg-linear-to-t from-foreground/60 via-foreground/20 to-transparent" />
               
               <div className="absolute inset-0 p-8 flex flex-col justify-end text-background">
-                <p className="text-xs tracking-widest uppercase mb-2">
-                  {category.count}
-                </p>
                 <h3 className="text-4xl md:text-5xl font-aston-script mb-3 mt-5">{category.name}</h3>
                 <p className="text-sm mb-4 opacity-80">
                   {category.description}
